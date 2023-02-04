@@ -9,17 +9,27 @@ using namespace std;
 class Solution{
 public:	
 	// calculate the maximum sum with out adjacent
-int findMaxSum(int *arr, int n) {
-	    // code here
-	    for(int i=0 ; i<n ;i++){
-	        int pick=arr[i];
-	        if(i>1){
-	            pick=arr[i]+arr[i-2];
-	        }
-	        int nonpick=0+arr[i-1];
-	        arr[i]=max(pick,nonpick);
-	    }
-	   return arr[n-1];
+	int f(int ind, int *arr, int *dp ){
+	    if(ind<0) return 0;
+	    if(ind==0) return arr[ind];
+	    if(dp[ind]==-1) return dp[ind];
+	    int pick=arr[ind]+f(ind-2,arr,dp);
+	    int unpick=f(ind-1,arr,dp);
+	    return dp[ind]=max(pick,unpick);
+	    
+	}
+	int findMaxSum(int *arr, int n) {
+	 int prev=arr[0];
+	 int prev2=0;
+	 for(int i=0 ;i<n ;i++){
+	     int take=arr[i];
+	     if(i>1)take+=prev2;
+	     int nottake=0+prev;
+	     int curi=max(take,nottake);
+	     prev2=prev;
+	     prev=curi;
+	 }
+	 return prev;
 	}
 };
 
