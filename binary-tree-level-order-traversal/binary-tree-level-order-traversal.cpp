@@ -28,7 +28,6 @@ public:
             }
             vc.push_back(v);
             v.clear();
-            
         }
         return vc;
         
