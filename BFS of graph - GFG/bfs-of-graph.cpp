@@ -29,6 +29,7 @@ q.push(0);
     }
 };
 
+
 //{ Driver Code Starts.
 int main() {
     int tc;
